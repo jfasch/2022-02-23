@@ -6,12 +6,10 @@ if number == 1:
     print('not prime')
     sys.exit()
 
-divisor_candidate = 2
-while divisor_candidate < number/2:
+for divisor_candidate in range(2, number//2 + 1):
     if number % divisor_candidate == 0:
         print('not prime')
         divisor_found = True
         break
-    divisor_candidate += 1
 else:
     print('prime')
