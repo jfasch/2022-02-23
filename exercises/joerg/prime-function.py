@@ -1,27 +1,29 @@
 import sys
 
+
+class DefinitionsMengeViolated(Exception):
+    def __init__(self, the_number):
+        super().__init__(f'primeness not defined for {the_number}')
+
 def is_prime(num):
     if num < 1:
-        raise Exception(f'he oida definitionsmenge!!! ({num})')
+        raise DefinitionsMengeViolated(num)
 
     if number == 1:
         return False
     
-    for divisor_candidate in range(2, number//2 + 1):
-        if number % divisor_candidate == 0:
+    for divisor_candidate in range(2, num//2 + 1):
+        if num % divisor_candidate == 0:
             return False
     else:
         return True
 
 
-number = int(sys.argv[1])
 try:
-    issiejetztprimeoderwas = is_prime(number)
-except Exception as e:
-    print('Benutzer, du solltest AHS Mathematik nachholen', e)
+    if is_prime(int(sys.argv[1])):
+        print('prime')
+    else:
+        print('not prime')
+except DefinitionsMengeViolated as e:
+    print('Benutzer, du solltest AHS Mathematik nachholen:', e)
     sys.exit(1)
-
-if issiejetztprimeoderwas:
-    print('prime')
-else:
-    print('not prime')
