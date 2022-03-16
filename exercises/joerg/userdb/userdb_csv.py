@@ -1,7 +1,11 @@
 import csv
 
 class User:
-    pass
+    def __init__(self, id, firstname, lastname, birth):
+        self.id = int(id)
+        self.firstname = firstname
+        self.lastname = lastname
+        self.birth = birth
 
 def read_noheader(filename):
     f = open(filename, encoding='cp1252')
@@ -9,13 +13,7 @@ def read_noheader(filename):
 
     userlist = []
     for id, firstname, lastname, birth in rdr:
-        user = User()
-        user.id = int(id)
-        user.firstname = firstname
-        user.lastname = lastname
-        user.birth = birth
-
-        userlist.append(user)
+        userlist.append(User(id, firstname, lastname, birth))
     
     return userlist
 
@@ -30,12 +28,6 @@ def read_header(filename):
         lastname = rec['Last name']
         birth = rec['Date of Birth']
 
-        user = User()
-        user.id = int(id)
-        user.firstname = firstname
-        user.lastname = lastname
-        user.birth = birth
-
-        userlist.append(user)
+        userlist.append(User(id, firstname, lastname, birth))
 
     return userlist
