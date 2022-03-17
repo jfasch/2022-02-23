@@ -7,7 +7,7 @@ def read_noheader(filename):
 
     userlist = []
     for id, firstname, lastname, birth in rdr:
-        userlist.append(user.User(id, firstname, lastname, birth))
+        userlist.append(user.User(int(id), firstname, lastname, birth))
     
     return userlist
 
@@ -22,6 +22,6 @@ def read_header(filename):
         lastname = rec['Last name']
         birth = rec['Date of Birth']
 
-        userlist.append(user.User(id, firstname, lastname, birth))
+        userlist.append(user.User(int(id), firstname, lastname, birth))
 
     return userlist
