@@ -1,4 +1,4 @@
-from user import User
+from user import User, BadUserID
 import pytest
 
 
@@ -10,9 +10,9 @@ def test_id_is_int_ok():
     assert u.birth == 'z'
     
 def test_id_is_int_nok():
-    with pytest.raises(TypeError):
+    with pytest.raises(BadUserID):
         u = User('666', 'x', 'y', 'y')
 
 def test_id_is_int_nok_2():
-    with pytest.raises(TypeError):
+    with pytest.raises(BadUserID):
         u = User([1,2,3], 'x', 'y', 'y')
