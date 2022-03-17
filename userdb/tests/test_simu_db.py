@@ -1,6 +1,8 @@
 import simu_userdb
 from user import User
 
+import pytest
+
 
 def test_insert_all_fine():
     db = simu_userdb.SimuUserDB()
@@ -20,3 +22,13 @@ def test_insert_all_fine():
     assert u2_found.firstname == u2.firstname
     assert u2_found.lastname == u2.lastname
     assert u2_found.birth == u2.birth
+
+def test_insert_duplicate():
+    db = simu_userdb.SimuUserDB()
+    u1 = User(1, 'Joerg', 'Faschingbauer', '19.6.1966')
+    u2 = User(1, 'Elizabeth, II', 'Queen', '1.1.1900')
+
+    db.insert(u1)
+    with pytest.raises(simu_userdb.DuplicatIDError):
+        db.insert(u2)
+
