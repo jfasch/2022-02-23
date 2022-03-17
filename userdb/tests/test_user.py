@@ -1,4 +1,5 @@
 from user import User
+import pytest
 
 
 def test_id_is_int_ok():
@@ -9,15 +10,9 @@ def test_id_is_int_ok():
     assert u.birth == 'z'
     
 def test_id_is_int_nok():
-    try:
+    with pytest.raises(TypeError):
         u = User('666', 'x', 'y', 'y')
-        assert False
-    except TypeError:
-        assert True   # hm, pass would be sufficient
 
 def test_id_is_int_nok_2():
-    try:
+    with pytest.raises(TypeError):
         u = User([1,2,3], 'x', 'y', 'y')
-        assert False
-    except TypeError:
-        assert True   # hm, pass would be sufficient
